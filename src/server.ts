@@ -16,7 +16,13 @@ const app = express()
 const server = createServer(app)
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(cors());
+app.use(cors(
+  app.use(cors({
+    origin: 'http://localhost:4321',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+  }));
+));
 app.use(cookieParser());
 app.use(express.json());
 
