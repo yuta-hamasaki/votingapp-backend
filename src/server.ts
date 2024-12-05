@@ -8,13 +8,14 @@ import cookieParser from 'cookie-parser';
 import authRouter from "./routes/auth.routes"
 import pollRouter from "./routes/poll.routes"
 import voteSocket from "./sockets/vote.socket"
+import path from 'path';
 
 dotenv.config()
 
 const app = express()
 const server = createServer(app)
 
-
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
