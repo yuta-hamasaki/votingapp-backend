@@ -19,6 +19,9 @@ app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 
+app.get('/', (req, res) => {
+  res.send('Hello World')
+})
 app.use('/api/auth', authRouter);
 app.use('/api/poll', pollRouter)
 
