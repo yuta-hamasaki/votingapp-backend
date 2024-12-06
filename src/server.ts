@@ -17,7 +17,7 @@ const server = createServer(app)
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({
-  origin: '*',
+  origin: ['*', 'http://localhost:4321'],
   credentials:true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -34,7 +34,7 @@ app.use('/api/poll', pollRouter)
 
 const io = new SocketIOServer(server, {
   cors: {
-    origin: " http://localhost:4321/",
+    origin: "http://localhost:4321/",
     methods: ["GET", "POST"]
   }
 });
