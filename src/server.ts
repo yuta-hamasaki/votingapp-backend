@@ -17,10 +17,11 @@ const server = createServer(app)
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({
-    origin: 'http://localhost:4321',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization']
-  }))
+  origin: 'http://localhost:4321',
+  credentials:true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(cookieParser());
 app.use(express.json());
 
