@@ -17,7 +17,7 @@ const server = createServer(app)
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({
-  origin: 'http://localhost:4321',
+  origin: '*',
   credentials:true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
