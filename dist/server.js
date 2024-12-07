@@ -13,17 +13,33 @@ const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const auth_routes_1 = __importDefault(require("./routes/auth.routes"));
 const poll_routes_1 = __importDefault(require("./routes/poll.routes"));
 const vote_socket_1 = __importDefault(require("./sockets/vote.socket"));
+const path_1 = __importDefault(require("path"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const server = (0, http_1.createServer)(app);
-app.use((0, cors_1.default)());
+app.use(express_1.default.static(path_1.default.join(__dirname, 'public')));
+app.use((0, cors_1.default)({
+    origin: ['http://localhost:4321'],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: [
+        'Content-Type',
+        'Authorization',
+        'X-Requested-With',
+        'Accept',
+        'Origin'
+    ]
+}));
 app.use((0, cookie_parser_1.default)());
 app.use(express_1.default.json());
+app.get('/', (req, res) => {
+    res.send('Hello World');
+});
 app.use('/api/auth', auth_routes_1.default);
 app.use('/api/poll', poll_routes_1.default);
 const io = new socket_io_1.Server(server, {
     cors: {
-        origin: " http://localhost:4321/",
+        origin: "http://localhost:4321/",
         methods: ["GET", "POST"]
     }
 });
