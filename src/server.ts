@@ -20,7 +20,13 @@ app.use(cors({
   origin: ['http://localhost:4321'],
   credentials:true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  // allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: [
+    'Content-Type', 
+    'Authorization', 
+    'X-Requested-With', 
+    'Accept', 
+    'Origin'
+  ]
 }));
 app.use(cookieParser());
 app.use(express.json());
