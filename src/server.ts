@@ -46,8 +46,6 @@ const io = new SocketIOServer(server, {
 });
 
 
-
-
 const URI = process.env.DB!
 mongoose
   .connect(URI, { dbName: 'voting-app' })
